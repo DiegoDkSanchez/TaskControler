@@ -1,0 +1,31 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion rootProject.ext.compile_sdk_version
+    buildToolsVersion rootProject.ext.buildTool_version
+}
+
+dependencies {
+    implementation project(":core")
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    //Lifecycle
+    implementation rootProject.ext.lifecycleDependency.lifecycle_extensions
+    implementation rootProject.ext.lifecycleDependency.lifecycle_viewmodel
+    implementation rootProject.ext.lifecycleDependency.lifecycle_livedata
+    implementation rootProject.ext.lifecycleDependency.lifecycle_livedata_ktx
+    implementation rootProject.ext.lifecycleDependency.lifecycle_runtime
+    implementation rootProject.ext.lifecycleDependency.lifecycle_runtime_ktx
+
+    // Firebase
+    implementation rootProject.ext.firebase.authentication
+    implementation rootProject.ext.firebase.services_authentication
+}
+
+sourceCompatibility = "7"
+targetCompatibility = "7"

@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Task Controler</string>
+
+    <string name="mode_of">Modo de</string>
+    <string name="use">Uso</string>
+    <string name="login">Iniciar Sesión</string>
+    <string name="login_google">Iniciar Sesion con Google</string>
+    <string name="use_without_internet">Usar sin internet</string>
+    <string name="you_dont_have_internet">¿No tienes conexión a internet?</string>
+    <string name="login_fail">No se puedo iniciar sesion</string>
+</resources>
