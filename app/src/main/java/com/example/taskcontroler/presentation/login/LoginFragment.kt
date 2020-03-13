@@ -10,17 +10,22 @@ import com.example.core.model.User
 import com.example.core.util.ActiviyNavigation
 import com.example.taskcontroler.R
 import com.example.taskcontroler.databinding.FragmentLoginBinding
+import com.example.taskcontroler.extensions.AlertDialogs
 import com.example.taskcontroler.presentation.base.BaseFragment
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_login.*
+import org.koin.android.ext.android.inject
+
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class LoginFragment :
     BaseFragment<FragmentLoginBinding>(R.layout.fragment_login, BR.loginViewModel),
     ActiviyNavigation {
 
     override val viewModel: LoginViewModel? by viewModel()
+    private val alertDialog: AlertDialogs by inject()
 
     companion object {
         fun newIntance() =
@@ -36,6 +41,7 @@ class LoginFragment :
     }
 
     fun observerUserData() = Observer<User> {
+        alertDialog.stop()
         Log.v("TEST", it.toString())
     }
 
