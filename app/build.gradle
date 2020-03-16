@@ -49,6 +49,7 @@ dependencies {
     // Koin:
     implementation rootProject.ext.injectionDependency.koin_viewmodel
     implementation rootProject.ext.injectionDependency.koin_scope
+    testImplementation "org.koin:koin-test:$koin_version"
 
     // Firebase
     implementation rootProject.ext.firebase.authentication
@@ -68,6 +69,8 @@ dependencies {
 
     //Lottie
     implementation rootProject.ext.lottie.package_lottie
+
+    testImplementation rootProject.ext.coroutines.test
 
 }
 kapt {

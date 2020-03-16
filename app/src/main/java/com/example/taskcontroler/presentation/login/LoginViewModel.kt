@@ -11,23 +11,19 @@ import com.example.taskcontroler.extensions.AlertDialogs
 import com.example.taskcontroler.presentation.base.BaseViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.koin.android.ext.android.inject
-import org.koin.core.parameter.parametersOf
 
 class LoginViewModel(
-    val googleManager: GoogleManager,
-    private val alertDialogs: AlertDialogs
+    var googleManager: GoogleManager,
+    var alertDialogs: AlertDialogs
 ) : BaseViewModel() {
     private companion object {
         const val GOOGLE_SIGN_IN: Int = 9001
     }
-    private lateinit var googleSignInClient: GoogleSignInClient
 
     val startActivityForResultEvent = LiveMessageEvent<ActiviyNavigation>()
 
@@ -50,8 +46,7 @@ class LoginViewModel(
             .requestIdToken(context.resources.getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
-        googleSignInClient = GoogleSignIn.getClient(context, gso)
-        val signInIntent = googleSignInClient.signInIntent
+        val signInIntent = GoogleSignIn.getClient(context, gso).signInIntent
 
         startActivityForResultEvent.sentEvent {
             startActivityForResult(
